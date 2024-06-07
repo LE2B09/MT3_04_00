@@ -38,6 +38,9 @@
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp">
       <Filter>KamataEngine\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Math\MathFunction.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -111,5 +114,13 @@
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h">
       <Filter>KamataEngine\Include</Filter>
     </ClInclude>
+    <ClInclude Include="Math\MathFunction.h" />
+    <ClInclude Include="Math\AABB.h" />
+    <ClInclude Include="Math\Triangle.h" />
+    <ClInclude Include="Math\Plane.h" />
+    <ClInclude Include="Math\Sphereh.h" />
+    <ClInclude Include="Math\Ray.h" />
+    <ClInclude Include="Math\Line.h" />
+    <ClInclude Include="Math\Segment.h" />
   </ItemGroup>
 </Project>

@@ -312,15 +312,15 @@ Matrix4x4 MathFunction::MakeTranslateMatrix(const Vector3& translate)
 
 Matrix4x4 MathFunction::MakeAffineMatrix(const Vector3& scale, const Vector3& radian, const Vector3& translate)
 {
-	Matrix4x4 scaleMatrix = MakeScaleMatrix(scale);
+	/*Matrix4x4 scaleMatrix = MakeScaleMatrix(scale);
 	Matrix4x4 rotateXMatrix = MakeRotateXMatrix(radian.x);
 	Matrix4x4 rotateYMatrix = MakeRotateYMatrix(radian.y);
 	Matrix4x4 rotateZMatrix = MakeRotateZMatrix(radian.z);
 	Matrix4x4 translateMatrix = MakeTranslateMatrix(translate);
 
-	return Multiply(Multiply(Multiply(scaleMatrix, rotateXMatrix), rotateYMatrix), Multiply(rotateZMatrix, translateMatrix));
+	return Multiply(Multiply(Multiply(scaleMatrix, rotateXMatrix), rotateYMatrix), Multiply(rotateZMatrix, translateMatrix));*/
 
-	//return Multiply(MakeScaleMatrix(scale), Multiply(Multiply(MakeRotateXMatrix(radian.x), Multiply(MakeRotateYMatrix(radian.y), MakeRotateZMatrix(radian.z))), MakeTranslateMatrix(translate)));
+	return Multiply(MakeScaleMatrix(scale), Multiply(Multiply(MakeRotateXMatrix(radian.x), Multiply(MakeRotateYMatrix(radian.y), MakeRotateZMatrix(radian.z))), MakeTranslateMatrix(translate)));
 }
 
 Matrix4x4 MathFunction::MakePerspectiveFovMatrix(float fovY, float aspectRatio, float nearClip, float farClip)
