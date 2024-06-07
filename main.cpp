@@ -151,9 +151,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			}
 
 			ball.velocity += ball.acceleration * deltaTime;
-			
-			ball.position.x += ball.velocity.x * deltaTime;
-			ball.position.y += ball.velocity.y * deltaTime;
+			ball.position += ball.velocity * deltaTime;
+
+			/*	ball.position.x += ball.velocity.x * deltaTime;
+				ball.position.y += ball.velocity.y * deltaTime;*/
 		}
 
 		//各種行列の計算
@@ -184,7 +185,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 		// Ballを描画
 		//Sphere sphere{ ball.position, ball.radius };
-		Func.DrawSphere(Sphere{.center = ball.position,.radius = ball.radius}, viewProjectionMatrix, viewportMatrix, ball.color);
+		Func.DrawSphere(Sphere{ .center = ball.position,.radius = ball.radius }, viewProjectionMatrix, viewportMatrix, ball.color);
 
 		// Springを描画
 		// バネのアンカーとボールの位置を結ぶ線を描画
