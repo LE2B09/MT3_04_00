@@ -50,8 +50,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	//デルタタイム
 	float deltaTime = 1.0f / 60.0f;
 
-	Vector3 rotate = {};
-	Vector3 translate = {};
+	Vector3 translate{};
+	Vector3 rotate{};
+
 	Vector3 cameraTranslate = { 0.0f, 1.9f, -6.49f };
 	Vector3 cameraRotate = { 0.26f, 0.0f, 0.0f };
 
@@ -76,10 +77,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		// キー入力を受け取る
 		memcpy(preKeys, keys, 256);
 		Novice::GetHitKeyStateAll(keys);
-
-		///
-		/// ↓更新処理ここから
-		///
 
 		// マウス入力を取得
 		POINT mousePosition;
@@ -158,17 +155,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		}
 
 		//各種行列の計算
-		//Matrix4x4 worldMatrix = Func.MakeAffineMatrix({ 1.0f,1.0f,1.0f }, rotate, translate);
+		Matrix4x4 worldMatrix = Func.MakeAffineMatrix({ 1.0f,1.0f,1.0f }, rotate, translate);
 		Matrix4x4 cameraMatrix = Func.MakeAffineMatrix({ 1.0f,1.0f,1.0f }, cameraRotate, cameraTranslate);
-		//Matrix4x4 viewWorldMatrix = Func.Inverse(worldMatrix);
+		Matrix4x4 viewWorldMatrix = Func.Inverse(worldMatrix);
 		Matrix4x4 viewCameraMatrix = Func.Inverse(cameraMatrix);
-
 		// 透視投影行列を作成
 		Matrix4x4 projectionMatrix = Func.MakePerspectiveFovMatrix(0.45f, float(kWindowWidth) / float(kWindowHeight), 0.1f, 100.0f);
-
 		//ビュー座標変換行列を作成
-		Matrix4x4 viewProjectionMatrix = Func.Multiply(viewCameraMatrix, projectionMatrix);
-
+		Matrix4x4 viewProjectionMatrix = Func.Multiply(viewWorldMatrix, Func.Multiply(viewCameraMatrix, projectionMatrix));
 		//ViewportMatrixビューポート変換行列を作成
 		Matrix4x4 viewportMatrix = Func.MakeViewportMatrix(0.0f, 0.0f, float(kWindowWidth), float(kWindowHeight), 0.0f, 1.0f);
 
